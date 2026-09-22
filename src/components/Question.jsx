@@ -8,9 +8,15 @@ export default function Question(props){
   }, [props.data.incorrect_answers, props.data.correct_answer]);
     const optionButtons = options.map((option, index) => (
     
-    <label key={`q${props.id}opt${index}`} htmlFor={`q${props.id}opt${index}`}>
-    <input type="radio" id={`q${props.id}opt${index}`} name={props.data.question.replaceAll(" ","_")} value={option}/>
-    <span className="btn-pill" >{he.decode(option)}</span>
+    <label 
+        key={`q${props.id}opt${index}`} 
+        htmlFor={`q${props.id}opt${index}`}>
+    <input 
+        type="radio" id={`q${props.id}opt${index}`} 
+        name={props.id} value={option} disabled={props.isSubmitted}/>
+    <span className="btn-pill">
+            {he.decode(option)}
+    </span>
   </label>
     
 ))
