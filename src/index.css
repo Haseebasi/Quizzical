@@ -35,6 +35,21 @@ body{
   pointer-events: none;
 }
 
+.after-shape{
+  width: 250px;
+  height: 250px;
+}
+
+main{
+  /* background-color: aqua; */
+  margin: 0 auto;
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .hero{
     display: flex;
     flex-direction: column;
@@ -71,3 +86,30 @@ body{
     box-shadow: 1px 1px 1px grey;
 }
 
+.question-pad p{
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+
+/* 1. Visually hide the radio input and its default dot */
+.radio-group input[type="radio"] {
+  visibility: hidden;
+}
+
+/* 2. Style the span next to it as your custom pill button */
+.btn-pill {
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 50px;
+  border: 2px solid #4D5B9E;
+  color: #293264;
+  cursor: pointer;
+}
+
+/* 3. When checked, style the pill button (no dot shown) */
+.radio-group input[type="radio"]:checked + .btn-pill {
+  background-color: #D6DBF5;
+  border-color:  #D6DBF5;
+}
