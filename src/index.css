@@ -116,7 +116,7 @@ main{
 }
 
 /* 2. Style the span next to it as your custom pill button */
-.btn-pill {
+.option-pill {
   font-family: "Inter", sans-serif;
   display: inline-block;
   padding: 5px 15px;
@@ -127,7 +127,7 @@ main{
 }
 
 /* 3. When checked, style the pill button (no dot shown) */
-.radio-group input[type="radio"]:checked + .btn-pill {
+.option-pill .selected{
   background-color: #D6DBF5;
   border-color:  #D6DBF5;
 }
@@ -145,4 +145,12 @@ main{
   font-family: "Inter",sans-serif;
   font-weight: bold;
   
+}
+
+
+.wrong-answer{
+  background-color: #F8BCBC;
+}
+.correct-answer{
+  background-color: #94D7A2;
 }
