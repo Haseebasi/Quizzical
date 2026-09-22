@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-
+import he from "he"
 export default function Question(props){
     const [options,setOptions] = useState([])
     useEffect(() => {
@@ -10,14 +10,13 @@ export default function Question(props){
     
     <label key={`q${props.id}opt${index}`} htmlFor={`q${props.id}opt${index}`}>
     <input type="radio" id={`q${props.id}opt${index}`} name={props.data.question.replaceAll(" ","_")} value={option}/>
-    <span className="btn-pill" >{option}</span>
+    <span className="btn-pill" >{he.decode(option)}</span>
   </label>
     
 ))
-console.log(optionButtons)
     return(
         <section className="question-pad">
-            <p>{props.data.question}</p>
+            <p>{he.decode(props.data.question)}</p>
             <div className="radio-group">
             {optionButtons}
             </div>

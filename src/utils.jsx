@@ -1,6 +1,6 @@
 export async  function fetchQuiz(){
     try{
-const response=await fetch("https://opentdb.com/api.php?amount=10&category=29&difficulty=easy&type=multiple")
+const response=await fetch("https://opentdb.com/api.php?amount=5&category=29&difficulty=easy&type=multiple")
 if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
