@@ -14,6 +14,7 @@ export default function Question(props){
   </label>
     
 ))
+console.log(optionButtons)
     return(
         <section className="question-pad">
             <p>{props.data.question}</p>
@@ -29,6 +30,5 @@ function pushRandom(arr,value){
     const newArr=[...arr]
     const randomIndex=Math.floor(Math.random() * (arr.length + 1));
     newArr.splice(randomIndex, 0, value);
-    console.log(newArr)
     return newArr
 }
