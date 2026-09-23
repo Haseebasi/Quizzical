@@ -4,6 +4,7 @@ import {fetchQuiz} from "./utils.jsx"
 import Question from "./components/Question.jsx"
 import {clsx} from "clsx"
 import Confetti from 'react-confetti'
+import loadingGif from "./assets/loading.gif"
 
 function App() {
   const [start,setStart]= React.useState(false)
@@ -82,7 +83,7 @@ function newGame(){
       <div className={clsx("bottom-left-shape",start && "after-shape")}></div>
     <main>
       {loading && 
-      <img src="./src/assets/loading.gif" alt="Loading animation" className="loading-gif"></img>
+      <img src={loadingGif} alt="Loading animation" className="loading-gif"></img>
       }
       {error && 
       <section className="error-section">
