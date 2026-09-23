@@ -9,15 +9,14 @@ function App() {
   const [quiz,setQuiz]=React.useState([])
   const [selectedValues,setSelectedValues]=React.useState({})
   const [correctAnswers,setCorrectAnswers]=React.useState([])
+  const [isSubmitted, setIsSubmitted] = React.useState(false)
+  const [score,setScore] = React.useState(0)
 
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
-  let count=0
   const questions=quiz.map((question,index)=>(
     <Question key={index} 
     id={index}
     data={question} 
     selectedValues={selectedValues} 
-    correctAnswers={correctAnswers} 
     isSubmitted={isSubmitted}/>
   ))
 
@@ -34,23 +33,31 @@ function App() {
     const allSubmitted=Object.fromEntries(formData.entries());
     setSelectedValues(allSubmitted)
     setIsSubmitted(true)
-    count = updateCount(allSubmitted)
-    
+    const count = updateCount(allSubmitted)
+    setScore(count)
   }
   function updateCount(submittedData) {
-  let count = 0;
+  let counting = 0
 
   Object.keys(submittedData).forEach((key) => {
-    // 1. Bracket notation [key] to dynamically access the value
-    // 2. Compare against submittedData directly instead of state
     if (submittedData[key] === correctAnswers[Number(key)]) {
-      count++;
+      counting++
     }
   });
-
-  console.log(count);
-  return count;
+  console.log(counting)
+  return counting
+  
 }
+function newGame(){
+  setQuiz([])
+  setSelectedValues({})
+  setCorrectAnswers([])
+  setIsSubmitted(false)
+  setScore(0)
+  startQuiz()
+  
+}
+
   return (
     <>
       <div className={clsx("top-right-shape",start && "after-shape")}></div>
@@ -65,7 +72,7 @@ function App() {
       {quiz.length>0 && (<form onSubmit={handleSubmit}>
             {questions}
             <section className="submit-section">
-            {isSubmit ? <><span>You scored 3/5 correct answers</span><button type='button' className="submit-btn">New game</button></> : <button type='submit' className="submit-btn">Check answers</button>}
+            {isSubmitted ? <><span>You scored {score}/5 correct answers</span><button type='button' className="submit-btn" onClick={newGame}>New game</button></> : <button type='submit' className="submit-btn">Check answers</button>}
             </section>
         </form>)
         }

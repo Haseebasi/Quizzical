@@ -16,7 +16,6 @@ export default function Question(props){
         const isAnswered = props.isSubmitted && keysOfselected.includes(String(props.id));
         const userSelection = isAnswered && props.selectedValues[props.id]; 
         const isSelected = isAnswered && userSelection === option;
-        // const isScored=isSelected && props.correctAnswers[props.id] === option
         const isCorrect = props.isSubmitted && props.data.correct_answer === option;
         const isWrong = isSelected && props.data.correct_answer !== option;
         
