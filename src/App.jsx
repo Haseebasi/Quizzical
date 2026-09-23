@@ -65,7 +65,7 @@ function App() {
       {quiz.length>0 && (<form onSubmit={handleSubmit}>
             {questions}
             <section className="submit-section">
-            <span>You scored 3/5 correct answers</span><button type='submit' className="submit-btn">Check answers</button>
+            {isSubmit ? <><span>You scored 3/5 correct answers</span><button type='button' className="submit-btn">New game</button></> : <button type='submit' className="submit-btn">Check answers</button>}
             </section>
         </form>)
         }
