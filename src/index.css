@@ -112,7 +112,7 @@ main{
 }
 /* 1. Visually hide the radio input and its default dot */
 .radio-group input[type="radio"] {
-  visibility: hidden;
+  opacity:0;
 }
 
 /* 2. Style the span next to it as your custom pill button */
@@ -127,9 +127,9 @@ main{
 }
 
 /* 3. When checked, style the pill button (no dot shown) */
- .radio-group input[type="radio"]:checked + .option-pill {
+.radio-group input[type="radio"]:checked + .option-pill {
   background-color: #D6DBF5;
-  border-color:  #D6DBF5;
+  border-color: #D6DBF5;
 }
 
 
@@ -147,10 +147,18 @@ main{
   
 }
 
-
-.option-pill.wrong{
-  background-color: #F8BCBC;
+.option-pill:disabled,
+input[type="radio"]:disabled + .option-pill {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
-.option-pill.correct{
+.option-pill.correct,
+.radio-group input[type="radio"]:disabled + .option-pill.correct {
   background-color: #94D7A2;
+  border-color: #94D7A2;
+  opacity: 1;
+}
+.radio-group input[type="radio"]:checked + .option-pill.wrong {
+  background-color: #F8BCBC;
+  border-color: #F8BCBC;
 }
