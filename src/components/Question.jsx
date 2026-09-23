@@ -3,21 +3,22 @@ import he from "he"
 import {clsx} from "clsx"
 
 
-const keysOfselected=Object.keys(props.selectedValues)
-const valuesOfselected = Object.values(props.selectedValues)
+
 export default function Question(props){
     const [options,setOptions] = useState([])
+    const keysOfselected=Object.keys(props.selectedValues)
+    const valuesOfselected = Object.values(props.selectedValues)
     useEffect(() => {
     const shuffled = pushRandom(props.data.incorrect_answers, props.data.correct_answer);
     setOptions(shuffled);
   }, [props.data.incorrect_answers, props.data.correct_answer]);
     const optionButtons = options.map((option, index) => {
-        const isAnswered = props.isSubmitted && keysOfselected.includes(String(props.id))
-        const indexInSelected = isAnswered && keysOfselected.indexOf(String(props.id))
-        const isSelected=isAnswered && valuesOfselected[indexInSelected] === option
+        const isAnswered = props.isSubmitted && keysOfselected.includes(String(props.id));
+        const userSelection = isAnswered && props.selectedValues[props.id]; 
+        const isSelected = isAnswered && userSelection === option;
         // const isScored=isSelected && props.correctAnswers[props.id] === option
-        const isCorrect = isAnswered && props.data.correct_answer
-        const isWrong=isSelected && !props.correctAnswers[props.id] === option
+        const isCorrect = props.isSubmitted && props.data.correct_answer === option;
+        const isWrong = isSelected && props.data.correct_answer !== option;
         
     
     return(<label 
@@ -31,9 +32,9 @@ export default function Question(props){
         />
     <span className={clsx("option-pill",
     {
-        selected:isSelected,
-        "wrong-answer":isWrong,
-        "correct-answer":isCorrect
+
+        wrong:isWrong,
+        correct:isCorrect
     }
     )}>
             {he.decode(option)}

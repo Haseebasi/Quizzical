@@ -10,8 +10,8 @@ function App() {
   const [selectedValues,setSelectedValues]=React.useState({})
   const [correctAnswers,setCorrectAnswers]=React.useState([])
 
-  const isSubmitted = false
-  const count=0
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  let count=0
   const questions=quiz.map((question,index)=>(
     <Question key={index} 
     id={index}
@@ -33,18 +33,24 @@ function App() {
     const formData=new FormData(e.currentTarget)
     const allSubmitted=Object.fromEntries(formData.entries());
     setSelectedValues(allSubmitted)
-    isSubmitted=true
-    updateCount()
+    setIsSubmitted(true)
+    count = updateCount(allSubmitted)
     
   }
-  function updateCount(key){
+  function updateCount(submittedData) {
+  let count = 0;
 
-    Object.keys(allSubmitted).forEach((key)=>{
-      if(selectedValues.key === correctAnswers[Number(key)])
-      count++
-    })
-    
-  }
+  Object.keys(submittedData).forEach((key) => {
+    // 1. Bracket notation [key] to dynamically access the value
+    // 2. Compare against submittedData directly instead of state
+    if (submittedData[key] === correctAnswers[Number(key)]) {
+      count++;
+    }
+  });
+
+  console.log(count);
+  return count;
+}
   return (
     <>
       <div className={clsx("top-right-shape",start && "after-shape")}></div>

@@ -127,7 +127,7 @@ main{
 }
 
 /* 3. When checked, style the pill button (no dot shown) */
-.option-pill .selected{
+ .radio-group input[type="radio"]:checked + .option-pill {
   background-color: #D6DBF5;
   border-color:  #D6DBF5;
 }
@@ -148,9 +148,9 @@ main{
 }
 
 
-.wrong-answer{
+.option-pill.wrong{
   background-color: #F8BCBC;
 }
-.correct-answer{
+.option-pill.correct{
   background-color: #94D7A2;
 }
