@@ -7,7 +7,7 @@ if (!response.ok) {
     const data = await response.json();
     return (data && data.results && data.results.length > 0) ? data.results : [];
     }catch(err){
-        console.err(err.message)
-        return []
+        console.error("Failed to fetch quiz:", err.message);
+    throw err;
     }
 }

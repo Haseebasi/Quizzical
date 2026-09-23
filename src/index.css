@@ -52,6 +52,23 @@ main{
   align-items: center;
   padding:1.5em 0;
 }
+.loading-gif{
+  margin: auto;
+}
+.error-section{
+  margin: auto;
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.error-section h1{
+  color:#f77474;
+  margin: 0;
+}
+.error-section p{
+  color:#F8BCBC;
+}
 
 .hero{
     display: flex;
