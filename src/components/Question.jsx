@@ -7,7 +7,6 @@ import {clsx} from "clsx"
 export default function Question(props){
     const [options,setOptions] = useState([])
     const keysOfselected=Object.keys(props.selectedValues)
-    const valuesOfselected = Object.values(props.selectedValues)
     useEffect(() => {
     const shuffled = pushRandom(props.data.incorrect_answers, props.data.correct_answer);
     setOptions(shuffled);
@@ -45,7 +44,13 @@ export default function Question(props){
   
 )
     return(
-        <section className="question-pad" role="region" aria-label={`Question ${props.id + 1}:${he.decode(props.data.question)}`}>
+        <section 
+        className="question-pad" 
+        role="region" 
+        
+        aria-label={`Question ${props.id + 1} : 
+        ${he.decode(props.data.question)}`}>
+            
             <p >{he.decode(props.data.question)}</p>
             <div className="radio-group">
             {optionButtons}

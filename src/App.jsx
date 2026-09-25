@@ -7,6 +7,7 @@ import Confetti from 'react-confetti'
 import loadingGif from "./assets/loading.gif"
 
 function App() {
+
   const [start,setStart]= React.useState(false)
   const [quiz,setQuiz]=React.useState([])
   const [selectedValues,setSelectedValues]=React.useState({})
@@ -16,6 +17,7 @@ function App() {
   const [error,setError] = React.useState(null)
   const [loading,setLoading] = React.useState(false)
 
+
   const questions=quiz.map((question,index)=>(
     <Question key={index} 
     id={index}
@@ -23,6 +25,7 @@ function App() {
     selectedValues={selectedValues} 
     isSubmitted={isSubmitted}/>
   ))
+
 
   async function startQuiz(){
     setError(null)
@@ -39,6 +42,7 @@ function App() {
       setLoading(false)
     }
   }
+
   function handleSubmit(e){
     e.preventDefault()
     const formData=new FormData(e.currentTarget)
@@ -48,6 +52,7 @@ function App() {
     const count = updateCount(allSubmitted)
     setScore(count)
   }
+
   function updateCount(submittedData) {
   let counting = 0
 
@@ -60,6 +65,7 @@ function App() {
   return counting
   
 }
+
 function newGame(){
   setQuiz([])
   setSelectedValues({})
@@ -79,8 +85,10 @@ function newGame(){
               numberOfPieces={1000}
              />
       }
+
       <div className={clsx("top-right-shape",start && "after-shape")}></div>
       <div className={clsx("bottom-left-shape",start && "after-shape")}></div>
+
     <main aria-busy={loading}>
       {loading && 
       <img 
@@ -98,16 +106,20 @@ function newGame(){
        (<section className="hero">
         <h1>Quizzical</h1>
         <p>Test your comic book knowledge</p>
+
         <div className="start-button" 
         onClick={startQuiz} role="button" 
         aria-label="Start quiz: Test your comic book knowledge"
         tabIndex={0}>Start quiz
         </div>
+
       </section>)}
 
       {quiz.length>0 && (<form onSubmit={handleSubmit}>
             {questions}
+
             <section className="submit-section">
+
             {isSubmitted ? <>
             <span aria-live="polite">You scored {score}/{quiz.length} correct answers</span>
             <button type='button' 
@@ -118,6 +130,7 @@ function newGame(){
             className="submit-btn"
             role="button">Check answers
             </button>}
+
             </section>
         </form>)
         }
