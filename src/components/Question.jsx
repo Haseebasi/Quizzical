@@ -22,7 +22,8 @@ export default function Question(props){
     
     return(<label 
         key={`q${props.id}opt${index}`} 
-        htmlFor={`q${props.id}opt${index}`}>
+        htmlFor={`q${props.id}opt${index}`}
+        aria-label={`option for${props.id} ${he.decode(option)}`}>
     <input 
         type="radio" 
         id={`q${props.id}opt${index}`} 
@@ -35,7 +36,8 @@ export default function Question(props){
         wrong:isWrong,
         correct:isCorrect
     }
-    )}>
+    )} aria-label={isCorrect?`${he.decode(option)}, correct answer`:`${he.decode(option)}, selected incorrect answer`}
+    >
             {he.decode(option)}
     </span>
   </label>)
@@ -43,8 +45,8 @@ export default function Question(props){
   
 )
     return(
-        <section className="question-pad">
-            <p>{he.decode(props.data.question)}</p>
+        <section className="question-pad" role="region" aria-label={`Question ${props.id + 1}:${he.decode(props.data.question)}`}>
+            <p >{he.decode(props.data.question)}</p>
             <div className="radio-group">
             {optionButtons}
             </div>

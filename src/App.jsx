@@ -81,12 +81,15 @@ function newGame(){
       }
       <div className={clsx("top-right-shape",start && "after-shape")}></div>
       <div className={clsx("bottom-left-shape",start && "after-shape")}></div>
-    <main>
+    <main aria-busy={loading}>
       {loading && 
-      <img src={loadingGif} alt="Loading animation" className="loading-gif"></img>
+      <img 
+      src={loadingGif} alt="Loading animation" 
+      aria-label="Loading quiz questions, please wait" 
+      className="loading-gif"></img>
       }
       {error && 
-      <section className="error-section">
+      <section className="error-section" role="alert" aria-label="Error message">
         <h1>SORRY</h1> 
         <p>Something went wrong</p>
         </section>
@@ -95,13 +98,26 @@ function newGame(){
        (<section className="hero">
         <h1>Quizzical</h1>
         <p>Test your comic book knowledge</p>
-        <div className="start-button" onClick={startQuiz}>Start quiz</div>
+        <div className="start-button" 
+        onClick={startQuiz} role="button" 
+        aria-label="Start quiz: Test your comic book knowledge"
+        tabIndex={0}>Start quiz
+        </div>
       </section>)}
 
       {quiz.length>0 && (<form onSubmit={handleSubmit}>
             {questions}
             <section className="submit-section">
-            {isSubmitted ? <><span>You scored {score}/{quiz.length} correct answers</span><button type='button' className="submit-btn" onClick={newGame}>New game</button></> : <button type='submit' className="submit-btn">Check answers</button>}
+            {isSubmitted ? <>
+            <span aria-live="polite">You scored {score}/{quiz.length} correct answers</span>
+            <button type='button' 
+            className="submit-btn" 
+            onClick={newGame} >New game
+            </button></> : 
+            <button type='submit' 
+            className="submit-btn"
+            role="button">Check answers
+            </button>}
             </section>
         </form>)
         }
