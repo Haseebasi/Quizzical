@@ -164,6 +164,7 @@ main{
   
 }
 
+
 .option-pill:disabled,
 input[type="radio"]:disabled + .option-pill {
   opacity: 0.5;
@@ -178,4 +179,7 @@ input[type="radio"]:disabled + .option-pill {
 .radio-group input[type="radio"]:checked + .option-pill.wrong {
   background-color: #F8BCBC;
   border-color: #F8BCBC;
+}
+.not-answerd{
+  opacity:0.7;
 }

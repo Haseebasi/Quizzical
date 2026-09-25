@@ -7,12 +7,13 @@ import {clsx} from "clsx"
 export default function Question(props){
     const [options,setOptions] = useState([])
     const keysOfselected=Object.keys(props.selectedValues)
+    const isAnswered = props.isSubmitted && keysOfselected.includes(String(props.id));
+
     useEffect(() => {
     const shuffled = pushRandom(props.data.incorrect_answers, props.data.correct_answer);
     setOptions(shuffled);
   }, [props.data.incorrect_answers, props.data.correct_answer]);
     const optionButtons = options.map((option, index) => {
-        const isAnswered = props.isSubmitted && keysOfselected.includes(String(props.id));
         const userSelection = isAnswered && props.selectedValues[props.id]; 
         const isSelected = isAnswered && userSelection === option;
         const isCorrect = props.isSubmitted && props.data.correct_answer === option;
@@ -45,13 +46,13 @@ export default function Question(props){
 )
     return(
         <section 
-        className="question-pad" 
+        className={clsx("question-pad",!isAnswered && "not-answerd" )} 
         role="region" 
         
         aria-label={`Question ${props.id + 1} : 
         ${he.decode(props.data.question)}`}>
-            
-            <p >{he.decode(props.data.question)}</p>
+
+            <p>{he.decode(props.data.question)}</p>
             <div className="radio-group">
             {optionButtons}
             </div>
